@@ -28,7 +28,7 @@ const App = () => {
     <div className="App">
       <input value={query} onChange={(e) => setQuery(e.target.value)} />
       <button onClick={sendMessage}>send message</button>
-      {JSON.stringify(receiveMessage)}
+      {receiveMessage?.response}
     </div>
   );
 };

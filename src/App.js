@@ -5,11 +5,12 @@ const socket = io.connect("http://localhost:4000");
 const App = () => {
   const [receiveMessage, setReceiveMessage] = React.useState("");
   const [query, setQuery] = React.useState("");
-  const clientId = uuidv4();
+  const [clientId, setClientId] = React.useState(uuidv4());
+
   React.useEffect(() => {
+    setClientId(clientId || uuidv4());
     socket.on("receive_message", (data) => {
       if (data.clientId === clientId) {
-        console.log(data);
         setReceiveMessage(data);
       }
     });

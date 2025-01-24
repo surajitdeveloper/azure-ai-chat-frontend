@@ -2,7 +2,7 @@ import React from "react";
 import io from "socket.io-client";
 import { v4 as uuidv4 } from "uuid";
 // const socket = io.connect("http://localhost:4000");
-const socket = io.connect("https://my-app-service-azure.azurewebsites.net/");
+const socket = io.connect("https://surajit-ai.azurewebsites.net/");
 const App = () => {
   const [receiveMessage, setReceiveMessage] = React.useState("");
   const [query, setQuery] = React.useState("");

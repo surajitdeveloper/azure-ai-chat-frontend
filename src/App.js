@@ -28,9 +28,12 @@ const App = () => {
   };
   return (
     <div className="App">
-      <input value={query} onChange={(e) => setQuery(e.target.value)} />
-      <button onClick={sendMessage}>send message</button>
-      {receiveMessage?.response}
+      <form action={sendMessage}>
+      <textarea value={query} onChange={(e) => setQuery(e.target.value)} />
+      <button type="submit">Search</button>
+    </form>
+    <p>{receiveMessage?.response}</p>
+      
     </div>
   );
 };

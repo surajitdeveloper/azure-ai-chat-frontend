@@ -27,7 +27,7 @@ const App = () => {
     });
   };
   const onEnterPress = (e) => {
-    if (e.keyCode == 13 && e.shiftKey == false) {
+    if (e.keyCode === 13 && !e.shiftKey) {
       e.preventDefault();
       sendMessage();
     }
@@ -39,12 +39,12 @@ const App = () => {
           value={query}
           rows="4"
           cols="30"
-          style="width: 450px; margin-left: 25px;"
+          style={{width: '450px', marginLeft: '25px'}}
           onKeyDown={onEnterPress}
           onChange={(e) => setQuery(e.target.value)}
         />
         <br />
-        <button type="submit">Search</button>
+        <button style={{width: '450px', marginLeft: '25px', marginTop: '15px'}} type="submit">Search</button>
       </form>
       <p>{receiveMessage?.response}</p>
     </div>

@@ -26,14 +26,27 @@ const App = () => {
       clientId: clientId,
     });
   };
+  const onEnterPress = (e) => {
+    if (e.keyCode == 13 && e.shiftKey == false) {
+      e.preventDefault();
+      sendMessage();
+    }
+  };
   return (
     <div className="App">
       <form action={sendMessage}>
-      <textarea value={query} onChange={(e) => setQuery(e.target.value)} />
-      <button type="submit">Search</button>
-    </form>
-    <p>{receiveMessage?.response}</p>
-      
+        <textarea
+          value={query}
+          rows="4"
+          cols="30"
+          style="width: 450px; margin-left: 25px;"
+          onKeyDown={onEnterPress}
+          onChange={(e) => setQuery(e.target.value)}
+        />
+        <br />
+        <button type="submit">Search</button>
+      </form>
+      <p>{receiveMessage?.response}</p>
     </div>
   );
 };

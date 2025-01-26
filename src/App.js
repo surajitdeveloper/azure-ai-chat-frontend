@@ -1,10 +1,12 @@
 import React from "react";
 import io from "socket.io-client";
 import { v4 as uuidv4 } from "uuid";
-// const socket = io.connect("http://localhost:4000");
-const socket = io.connect("https://surajit-ai.azurewebsites.net/");
+// const connectionUrl = "http://localhost:4000";
+const connectionUrl = "https://surajit-ai.azurewebsites.net/";
+const socket = io.connect(connectionUrl);
 const App = () => {
   const [receiveMessage, setReceiveMessage] = React.useState("");
+  const [receiveMessageGemini, setReceiveMessageGemini] = React.useState("");
   const [query, setQuery] = React.useState("");
   const [clientId, setClientId] = React.useState(uuidv4());
 
@@ -20,33 +22,106 @@ const App = () => {
       socket.off("receive_message");
     };
   }, []);
-  const sendMessage = async () => {
+  const sendToAzure = async () => {
     socket.emit("send_message", {
       messages: [{ role: "user", content: query }],
       clientId: clientId,
     });
   };
-  const onEnterPress = (e) => {
+  const onEnterPressAzure = (e) => {
     if (e.keyCode === 13 && !e.shiftKey) {
       e.preventDefault();
-      sendMessage();
+      sendToAzure();
+    }
+  };
+  const sendToGemini = async () => {
+    const response = await fetch(`${connectionUrl}/get-gemini`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        prompt: query,
+      }),
+    });
+
+    if (response.ok) {
+      const data = await response.json();
+      setReceiveMessageGemini(data);
+    } else {
+      console.error("Error:", response.statusText);
+      // Handle the error
+    }
+  };
+  const onEnterPressGemini = (e) => {
+    if (e.keyCode === 13 && !e.shiftKey) {
+      e.preventDefault();
+      sendToGemini();
     }
   };
   return (
     <div className="App">
-      <form action={sendMessage}>
-        <textarea
-          value={query}
-          rows="4"
-          cols="30"
-          style={{width: '450px', marginLeft: '25px'}}
-          onKeyDown={onEnterPress}
-          onChange={(e) => setQuery(e.target.value)}
-        />
-        <br />
-        <button style={{width: '450px', marginLeft: '25px', marginTop: '15px'}} type="submit">Search</button>
-      </form>
-      <p>{receiveMessage?.response}</p>
+      <div style={{ display: "flex", flexDirection: "row" }}>
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            width: "49%",
+            height: "80vh",
+            overflow: "auto",
+          }}
+        >
+          <h1>Azure Chatbot</h1>
+          <form action={sendToAzure}>
+            <textarea
+              value={query}
+              rows="4"
+              cols="30"
+              style={{ width: "450px", marginLeft: "25px" }}
+              onKeyDown={onEnterPressAzure}
+              onChange={(e) => setQuery(e.target.value)}
+            />
+            <br />
+            <button
+              style={{ width: "450px", marginLeft: "25px", marginTop: "15px" }}
+              type="submit"
+            >
+              Search Azure
+            </button>
+          </form>
+          <p>{receiveMessage?.response}</p>
+        </div>
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            width: "49%",
+            height: "80vh",
+            overflow: "auto",
+          }}
+        >
+          <h1>Gemini Chatbot</h1>
+
+          <form action={sendToGemini}>
+            <textarea
+              value={query}
+              rows="4"
+              cols="30"
+              style={{ width: "450px", marginLeft: "25px" }}
+              onKeyDown={onEnterPressGemini}
+              onChange={(e) => setQuery(e.target.value)}
+            />
+            <br />
+            <button
+              style={{ width: "450px", marginLeft: "25px", marginTop: "15px" }}
+              type="submit"
+            >
+              Search Gemini
+            </button>
+          </form>
+          <p>{receiveMessageGemini?.result}</p>
+        </div>
+      </div>
     </div>
   );
 };

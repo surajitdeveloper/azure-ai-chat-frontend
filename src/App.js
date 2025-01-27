@@ -71,7 +71,7 @@ const App = () => {
             overflow: "auto",
           }}
         >
-          <h1>Azure Chatbot</h1>
+          <h1>GPT based RAG Chatbot</h1>
           <form action={sendToAzure}>
             <textarea
               value={query}
@@ -86,7 +86,7 @@ const App = () => {
               style={{ width: "450px", marginLeft: "25px", marginTop: "15px" }}
               type="submit"
             >
-              Search Azure
+              Search GPT based RAG Model
             </button>
           </form>
           <p>{receiveMessage?.response}</p>

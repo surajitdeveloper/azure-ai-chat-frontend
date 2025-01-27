@@ -71,7 +71,7 @@ const App = () => {
             overflow: "auto",
           }}
         >
-          <h1>GPT based RAG Chatbot</h1>
+          <h1>Azure Chatbot</h1>
           <form action={sendToAzure}>
             <textarea
               value={query}
@@ -86,7 +86,7 @@ const App = () => {
               style={{ width: "450px", marginLeft: "25px", marginTop: "15px" }}
               type="submit"
             >
-              Search GPT based RAG Model
+              Search Azure
             </button>
           </form>
           <p>{receiveMessage?.response}</p>
@@ -100,7 +100,7 @@ const App = () => {
             overflow: "auto",
           }}
         >
-          <h1>Gemini Chatbot</h1>
+          <h1>Gemini RAG Chatbot</h1>
 
           <form action={sendToGemini}>
             <textarea
@@ -116,7 +116,7 @@ const App = () => {
               style={{ width: "450px", marginLeft: "25px", marginTop: "15px" }}
               type="submit"
             >
-              Search Gemini
+              Search Gemini RAG
             </button>
           </form>
           <p>{receiveMessageGemini?.result}</p>

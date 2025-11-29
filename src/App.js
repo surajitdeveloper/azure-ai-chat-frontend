@@ -1,8 +1,8 @@
 import React from "react";
 import io from "socket.io-client";
 import { v4 as uuidv4 } from "uuid";
-const connectionUrl = "http://localhost:4000";
-// const connectionUrl = "https://azure-ai-chat-backend.onrender.com/";
+// const connectionUrl = "http://localhost:4000";
+const connectionUrl = "https://azure-ai-chat-backend.onrender.com/";
 const socket = io.connect(connectionUrl);
 const App = () => {
   const [receiveMessage, setReceiveMessage] = React.useState("");

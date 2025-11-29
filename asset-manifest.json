@@ -1,12 +1,15 @@
 {
   "files": {
-    "main.js": "/azure-ai-chat-frontend/static/js/main.1cdbf822.js",
+    "main.css": "/azure-ai-chat-frontend/static/css/main.1020eed7.css",
+    "main.js": "/azure-ai-chat-frontend/static/js/main.58bf087d.js",
     "static/js/453.8ab44547.chunk.js": "/azure-ai-chat-frontend/static/js/453.8ab44547.chunk.js",
     "index.html": "/azure-ai-chat-frontend/index.html",
-    "main.1cdbf822.js.map": "/azure-ai-chat-frontend/static/js/main.1cdbf822.js.map",
+    "main.1020eed7.css.map": "/azure-ai-chat-frontend/static/css/main.1020eed7.css.map",
+    "main.58bf087d.js.map": "/azure-ai-chat-frontend/static/js/main.58bf087d.js.map",
     "453.8ab44547.chunk.js.map": "/azure-ai-chat-frontend/static/js/453.8ab44547.chunk.js.map"
   },
   "entrypoints": [
-    "static/js/main.1cdbf822.js"
+    "static/css/main.1020eed7.css",
+    "static/js/main.58bf087d.js"
   ]
 }

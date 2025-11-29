@@ -1,8 +1,8 @@
 import React from "react";
 import io from "socket.io-client";
 import { v4 as uuidv4 } from "uuid";
-// const connectionUrl = "http://localhost:4000";
-const connectionUrl = "https://surajit-ai.azurewebsites.net/";
+const connectionUrl = "http://localhost:4000";
+// const connectionUrl = "https://azure-ai-chat-backend.onrender.com/";
 const socket = io.connect(connectionUrl);
 const App = () => {
   const [receiveMessage, setReceiveMessage] = React.useState("");
@@ -12,14 +12,15 @@ const App = () => {
 
   React.useEffect(() => {
     setClientId(clientId || uuidv4());
-    socket.on("receive_message", (data) => {
+    socket.on(`receive_message_${clientId}`, (data) => {
+      console.log("recerve msg -->",data);
       if (data.clientId === clientId) {
         setReceiveMessage(data);
       }
     });
 
     return () => {
-      socket.off("receive_message");
+      socket.off(`receive_message_${clientId}`);
     };
   }, []);
   const sendToAzure = async () => {
@@ -27,6 +28,7 @@ const App = () => {
       messages: [{ role: "user", content: query }],
       clientId: clientId,
     });
+    console.log("send msg -->",query);
   };
   const onEnterPressAzure = (e) => {
     if (e.keyCode === 13 && !e.shiftKey) {

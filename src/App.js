@@ -36,31 +36,8 @@ const App = () => {
       sendToAzure();
     }
   };
-  const sendToGemini = async () => {
-    const response = await fetch(`${connectionUrl}/get-gemini`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        prompt: query,
-      }),
-    });
 
-    if (response.ok) {
-      const data = await response.json();
-      setReceiveMessageGemini(data);
-    } else {
-      console.error("Error:", response.statusText);
-      // Handle the error
-    }
-  };
-  const onEnterPressGemini = (e) => {
-    if (e.keyCode === 13 && !e.shiftKey) {
-      e.preventDefault();
-      sendToGemini();
-    }
-  };
+
   return (
     <div className="App">
       <div style={{ display: "flex", flexDirection: "row" }}>
@@ -73,7 +50,7 @@ const App = () => {
             overflow: "auto",
           }}
         >
-          <h1>Azure Chatbot</h1>
+          <h1>AI Search</h1>
           <form action={sendToAzure}>
             <textarea
               value={query}
@@ -88,40 +65,10 @@ const App = () => {
               style={{ width: "450px", marginLeft: "25px", marginTop: "15px" }}
               type="submit"
             >
-              Search Azure
+              Search
             </button>
           </form>
           <p>{receiveMessage?.response}</p>
-        </div>
-        <div
-          style={{
-            display: "flex",
-            flexDirection: "column",
-            width: "49%",
-            height: "80vh",
-            overflow: "auto",
-          }}
-        >
-          <h1>Gemini RAG Chatbot</h1>
-
-          <form action={sendToGemini}>
-            <textarea
-              value={query}
-              rows="4"
-              cols="30"
-              style={{ width: "450px", marginLeft: "25px" }}
-              onKeyDown={onEnterPressGemini}
-              onChange={(e) => setQuery(e.target.value)}
-            />
-            <br />
-            <button
-              style={{ width: "450px", marginLeft: "25px", marginTop: "15px" }}
-              type="submit"
-            >
-              Search Gemini RAG
-            </button>
-          </form>
-          <p>{receiveMessageGemini?.result}</p>
         </div>
       </div>
     </div>

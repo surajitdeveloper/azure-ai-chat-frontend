@@ -26,7 +26,6 @@ const App = () => {
     setClientId(clientId || uuidv4());
     
     const handleReceiveMessage = (data) => {
-      console.log("receive msg -->", data);
       if (data.clientId === clientId) {
         setMessages((prev) => [...prev, { role: "ai", content: data.response }]);
       }
@@ -51,7 +50,6 @@ const App = () => {
       clientId: clientId,
     });
     
-    console.log("send msg -->", query);
     setQuery("");
   };
 

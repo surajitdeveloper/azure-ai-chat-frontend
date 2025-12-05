@@ -5,7 +5,7 @@ import { v4 as uuidv4 } from "uuid";
 import "./App.css";
 
 // const connectionUrl = "http://localhost:4000";
-const connectionUrl = "https://azure-ai-chat-backend.onrender.com/";
+const connectionUrl = "https://walrus-app-lj4x3.ondigitalocean.app/";
 const socket = io.connect(connectionUrl);
 
 const App = () => {

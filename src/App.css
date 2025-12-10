@@ -115,7 +115,8 @@ body {
   cursor: pointer;
   font-weight: 600;
   transition: background-color 0.2s;
-  height: 42px; /* Match input height roughly */
+  height: 42px;
+  /* Match input height roughly */
 }
 
 .send-button:hover {
@@ -125,4 +126,26 @@ body {
 .send-button:disabled {
   background-color: #c8c6c4;
   cursor: not-allowed;
+}
+
+.model-selector {
+  padding: 0 15px;
+  border: 1px solid var(--border-color);
+  border-radius: 24px;
+  background-color: var(--input-bg);
+  font-family: inherit;
+  font-size: 0.95rem;
+  outline: none;
+  cursor: pointer;
+  transition: border-color 0.2s;
+  height: 48px;
+  /* Match input visuals */
+  appearance: none;
+  /* Remove default arrow on some browsers for custom look if desired, but keep simple for now */
+  /* Re-add default arrow behavior if appearance: none removes it too aggressively without custom background */
+  appearance: auto;
+}
+
+.model-selector:focus {
+  border-color: var(--primary-color);
 }

@@ -4,8 +4,8 @@ import io from "socket.io-client";
 import { v4 as uuidv4 } from "uuid";
 import "./App.css";
 
-const connectionUrl = "http://localhost:4000";
-// const connectionUrl = "https://web-production-c8d65.up.railway.app/";
+// const connectionUrl = "http://localhost:4000";
+const connectionUrl = "https://web-production-c8d65.up.railway.app/";
 const socket = io.connect(connectionUrl);
 
 const App = () => {
@@ -13,6 +13,7 @@ const App = () => {
   const [query, setQuery] = useState("");
   const [clientId, setClientId] = useState(uuidv4());
   const [model, setModel] = useState("chatgpt");
+  const [isTyping, setIsTyping] = useState(false);
   const messagesEndRef = useRef(null);
 
   const scrollToBottom = () => {
@@ -29,6 +30,7 @@ const App = () => {
     const handleReceiveMessage = (data) => {
       if (data.clientId === clientId) {
         setMessages((prev) => [...prev, { role: "ai", content: data.response }]);
+        setIsTyping(false);
       }
     };
 
@@ -45,6 +47,7 @@ const App = () => {
 
     const userMessage = { role: "user", content: query };
     setMessages((prev) => [...prev, userMessage]);
+    setIsTyping(true);
     
     socket.emit("send_message", {
       messages: [userMessage], // Note: In a real app you might want to send history
@@ -78,6 +81,7 @@ const App = () => {
               {msg.content}
             </div>
           ))}
+          {isTyping && <div className="typing-indicator">AI is typing...</div>}
           <div ref={messagesEndRef} />
         </div>
 
@@ -97,6 +101,7 @@ const App = () => {
           >
             <option value="chatgpt">ChatGPT</option>
             <option value="gemini">Gemini</option>
+            <option value="rag">RAG</option>
           </select>
           <button className="send-button" type="submit">
             Send

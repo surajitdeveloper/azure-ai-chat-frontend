@@ -149,3 +149,11 @@ body {
 .model-selector:focus {
   border-color: var(--primary-color);
 }
+
+.typing-indicator {
+  padding: 10px 20px;
+  color: #666;
+  font-style: italic;
+  font-size: 0.9rem;
+  align-self: flex-start;
+}

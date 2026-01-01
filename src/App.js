@@ -4,8 +4,8 @@ import io from "socket.io-client";
 import { v4 as uuidv4 } from "uuid";
 import "./App.css";
 
-// const connectionUrl = "http://localhost:4000";
-const connectionUrl = "https://web-production-c8d65.up.railway.app/";
+const connectionUrl = "http://localhost:4000";
+// const connectionUrl = "https://web-production-c8d65.up.railway.app/";
 const socket = io.connect(connectionUrl);
 
 const App = () => {
@@ -102,6 +102,7 @@ const App = () => {
             <option value="chatgpt">ChatGPT</option>
             <option value="gemini">Gemini</option>
             <option value="rag">RAG</option>
+            <option value="agent">Appointment Agent</option>
           </select>
           <button className="send-button" type="submit">
             Send

@@ -103,6 +103,7 @@ const App = () => {
             <option value="gemini">Gemini</option>
             <option value="rag">RAG</option>
             <option value="agent">Appointment Agent</option>
+            <option value="agentic_rag">Agentic RAG</option>
           </select>
           <button className="send-button" type="submit">
             Send

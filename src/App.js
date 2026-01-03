@@ -69,7 +69,7 @@ const App = () => {
     <div className="App">
       <div className="chat-container">
         <div className="chat-header">
-          AI Chatbot
+          AI Chatbot with agentic RAG
         </div>
         
         <div className="message-list">

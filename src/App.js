@@ -4,8 +4,8 @@ import io from "socket.io-client";
 import { v4 as uuidv4 } from "uuid";
 import "./App.css";
 
-// const connectionUrl = "http://localhost:4000";
-const connectionUrl = "https://web-production-6ebb7.up.railway.app/";
+const connectionUrl = "http://localhost:4000";
+// const connectionUrl = "https://web-production-6ebb7.up.railway.app/";
 const socket = io.connect(connectionUrl);
 
 const App = () => {
@@ -69,7 +69,7 @@ const App = () => {
     <div className="App">
       <div className="chat-container">
         <div className="chat-header">
-          AI Chatbot with agentic RAG
+          AI Chatbot - chat with {model}
         </div>
         
         <div className="message-list">
@@ -102,8 +102,8 @@ const App = () => {
             <option value="chatgpt">ChatGPT</option>
             <option value="gemini">Gemini</option>
             <option value="rag">RAG</option>
-            <option value="agent">Appointment Agent</option>
-            <option value="agentic_rag">Agentic RAG</option>
+            <option value="agent">Appointment</option>
+            <option value="agentic_rag">Support</option>
           </select>
           <button className="send-button" type="submit">
             Send

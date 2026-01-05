@@ -102,7 +102,6 @@ const App = () => {
           >
             <option value="chatgpt">ChatGPT</option>
             <option value="gemini">Gemini</option>
-            <option value="rag">RAG</option>
             <option value="agent">Appointment</option>
             <option value="agentic_rag">Support</option>
           </select>

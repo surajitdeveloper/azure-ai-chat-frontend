@@ -6,14 +6,14 @@ import "./App.css";
 
 
 // const connectionUrl = "http://localhost:4000";
-const connectionUrl = "https://web-production-6ebb7.up.railway.app/";
+const connectionUrl = "https://azure-ai-chat-backend.onrender.com/";
 const socket = io.connect(connectionUrl);
 
 const App = () => {
   const [messages, setMessages] = useState([]);
   const [query, setQuery] = useState("");
   const [clientId, setClientId] = useState(uuidv4());
-  const [model, setModel] = useState("chatgpt");
+  const [model, setModel] = useState("agent");
   const [isTyping, setIsTyping] = useState(false);
   const messagesEndRef = useRef(null);
 
@@ -100,8 +100,6 @@ const App = () => {
             value={model}
             onChange={(e) => {setModel(e.target.value); setMessages([]);}}
           >
-            <option value="chatgpt">ChatGPT</option>
-            <option value="gemini">Gemini</option>
             <option value="agent">Appointment</option>
             <option value="agentic_rag">Support</option>
           </select>

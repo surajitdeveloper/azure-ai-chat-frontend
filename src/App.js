@@ -13,7 +13,7 @@ const App = () => {
   const [messages, setMessages] = useState([]);
   const [query, setQuery] = useState("");
   const [clientId, setClientId] = useState(uuidv4());
-  const [model, setModel] = useState("agent");
+  const [model, setModel] = useState("agentic_rag");
   const [isTyping, setIsTyping] = useState(false);
   const messagesEndRef = useRef(null);
 
@@ -70,7 +70,12 @@ const App = () => {
     <div className="App">
       <div className="chat-container">
         <div className="chat-header">
-          AI Chatbot - chat with {model}
+          <div className="header-title">AI Chatbot - chat with {model}</div>
+          <div className="header-description">
+            {model === "agentic_rag" 
+              ? "Provides customized information about Surajit, cStart Technologies, etc., and can take quotation information for creating sites."
+              : "Helps create an appointment with Surajit; necessary information is automatically captured by AI."}
+          </div>
         </div>
         
         <div className="message-list">
@@ -95,17 +100,19 @@ const App = () => {
             onKeyDown={onEnterPressAzure}
             onChange={(e) => setQuery(e.target.value)}
           />
-          <select 
-            className="model-selector"
-            value={model}
-            onChange={(e) => {setModel(e.target.value); setMessages([]);}}
-          >
-            <option value="agent">Appointment</option>
-            <option value="agentic_rag">Support</option>
-          </select>
-          <button className="send-button" type="submit">
-            Send
-          </button>
+          <div className="input-controls">
+            <select 
+              className="model-selector"
+              value={model}
+              onChange={(e) => {setModel(e.target.value); setMessages([]);}}
+            >
+              <option value="agentic_rag">Support</option>
+              <option value="agent">Appointment</option>
+            </select>
+            <button className="send-button" type="submit">
+              Send
+            </button>
+          </div>
         </form>
       </div>
     </div>

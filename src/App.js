@@ -72,7 +72,7 @@ const App = () => {
         <div className="chat-header">
           <div className="header-title">AI Chatbot - chat with {model}</div>
           <div className="header-description">
-            {model === "agentic_rag" 
+            {model === "agentic-rag" 
               ? "Provides customized information about Surajit, cStart Technologies, etc., and can take quotation information for creating sites."
               : "Helps create an appointment with Surajit; necessary information is automatically captured by AI."}
           </div>

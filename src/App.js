@@ -106,7 +106,7 @@ const App = () => {
               value={model}
               onChange={(e) => {setModel(e.target.value); setMessages([]);}}
             >
-              <option value="agentic_rag">Support</option>
+              <option value="agentic-rag">Support</option>
               <option value="agent">Appointment</option>
             </select>
             <button className="send-button" type="submit">

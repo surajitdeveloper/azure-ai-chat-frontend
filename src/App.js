@@ -13,7 +13,7 @@ const App = () => {
   const [messages, setMessages] = useState([]);
   const [query, setQuery] = useState("");
   const [clientId, setClientId] = useState(uuidv4());
-  const [model, setModel] = useState("agentic_rag");
+  const [model, setModel] = useState("agentic-rag");
   const [isTyping, setIsTyping] = useState(false);
   const messagesEndRef = useRef(null);
 

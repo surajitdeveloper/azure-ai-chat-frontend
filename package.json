@@ -24,6 +24,14 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
+  "jest": {
+    "setupFiles": [
+      "<rootDir>/src/setupTests.js"
+    ],
+    "moduleNameMapper": {
+      "socket.io-client": "socket.io-client"
+    }
+  },
   "eslintConfig": {
     "extends": [
       "react-app",
